@@ -1,34 +1,64 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Gallery
+# Gallery API
 
 API для работы с галереями Interlike App
 
-## Настройки галереи [/api/v1.0/gallery_config/{cmpNameUrl}/{eventNameUrl}/]
+## Group Gallery
 
-### Получить настройки [GET]
+## Gallery config [/api/v1.0/gallery_config/{cmpNameUrl}/{eventNameUrl}]
+
+### Get config [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+        {
+            "logo":"http://my.interlikeapp.com/images/uploaded/1470287629317logo_VCOneGoodThing_horizontal_colour_RGB.jpg",
+            "title":"VisitCanberra",
+            "fullTitle":"<p>#visitcanberra</p>",
+            "description":"Experiencing one good thing after another at the Canberra and Region Visitors Centre! #visitcanberra",
+            "bgcolor":"#FFFFFF",
+            "textcolor":"#FFFFFF",
+            "buttons": {
+                "fb": "object",
+                "twitter": "image",
+                "download": 1},
+            "showArrows":0,
+            "photosCount": 20,
+            "eventStartDate": "2018-09-17T14-16-26.386823Z",
+            "eventEndDate": "2018-09-17T14-16-26.386823Z"
+        }
+        
+## Gallery Photos [/api/v1.0/gallery/{cmpNameUrl}/{eventNameUrl}{?startDate}{?endDate}{?limit}{?offset}]
+
+## Get photos [GET]
+
++ Response 200 (application/json)
+
+        {
+            "count": 4,
+            "items": 
+                [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                    "_id": "57b3ed87ac8da6856aa40b1e",
+                    "createDate": "2016-08-17T04:52:23.095Z",
+                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
+                    },
+                    {
+                    "_id": "57b51f7eac8da6856aa41844",
+                    "createDate": "2016-08-18T02:37:50.065Z",
+                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
+                    },
+                    {
+                    "_id": "57b51fcaac8da6856aa41850",
+                    "createDate": "2016-08-18T02:39:06.942Z",
+                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
+                    },
+                    {
+                    "_id": "57b51fe9ac8da6856aa41855",
+                    "createDate": "2016-08-18T02:39:37.524Z",
+                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
                     }
                 ]
-            }
-        ]
+        }
