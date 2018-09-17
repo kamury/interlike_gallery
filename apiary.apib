@@ -12,23 +12,44 @@ API для работы с галереями Interlike App
 ### Get config [GET]
 
 + Response 200 (application/json)
+        
+    + Attributes (object)
 
-        {
-            "logo":"http://my.interlikeapp.com/images/uploaded/1470287629317logo_VCOneGoodThing_horizontal_colour_RGB.jpg",
-            "title":"VisitCanberra",
-            "fullTitle":"<p>#visitcanberra</p>",
-            "description":"Experiencing one good thing after another at the Canberra and Region Visitors Centre! #visitcanberra",
-            "bgcolor":"#FFFFFF",
-            "textcolor":"#FFFFFF",
-            "buttons": {
-                "fb": "object",
-                "twitter": "image",
-                "download": 1},
-            "showArrows":0,
-            "photosCount": 20,
-            "eventStartDate": "2018-09-17T14-16-26.386823Z",
-            "eventEndDate": "2018-09-17T14-16-26.386823Z"
-        }
+        + `buttons` (object) - Список отображаемых кнопок для шаринга и скачивания картинки.
+            + Возможные ключи
+                    + `fb`
+                    + `vk`
+                    + `twitter`
+                    + `linkedin`
+                    + `pin`
+                    + `odnoklassniki`
+                    + `download`
+            + Возможные значения
+                    + `picture`
+                    + `object`
+                    + `1`
+        + `showArrows` (number) - Показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
+        + `showNewFirst` (number) - Первыми показывать самые свежие фотографии (LIFO). 
+
+    + Body
+        
+            {
+                "logo":"http://my.interlikeapp.com/images/uploaded/1470287629317logo_VCOneGoodThing_horizontal_colour_RGB.jpg",
+                "title":"VisitCanberra",
+                "fullTitle":"<p>#visitcanberra</p>",
+                "description":"Experiencing one good thing after another at the Canberra and Region Visitors Centre! #visitcanberra",
+                "bgcolor":"#FFFFFF",
+                "textcolor":"#FFFFFF",
+                "buttons": {
+                    "fb": "object",
+                    "twitter": "image",
+                    "download": 1},
+                "showArrows": 1,
+                "showNewFirst": 1,
+                "photosCount": 20,
+                "eventStartDate": "2018-09-17T14-16-26.386823Z",
+                "eventEndDate": "2018-09-17T14-16-26.386823Z"
+            }
         
 ## Gallery Photos [/api/v1.0/gallery/{cmpNameUrl}/{eventNameUrl}{?startDate}{?endDate}{?limit}{?offset}]
 
@@ -41,24 +62,36 @@ API для работы с галереями Interlike App
             "items": 
                 [
                     {
-                    "_id": "57b3ed87ac8da6856aa40b1e",
-                    "createDate": "2016-08-17T04:52:23.095Z",
-                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
+                        "_id": "57b3ed87ac8da6856aa40b1e",
+                        "createDate": "2016-08-17T04:52:23.095Z",
+                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
                     },
                     {
-                    "_id": "57b51f7eac8da6856aa41844",
-                    "createDate": "2016-08-18T02:37:50.065Z",
-                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
+                        "_id": "57b51f7eac8da6856aa41844",
+                        "createDate": "2016-08-18T02:37:50.065Z",
+                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
                     },
                     {
-                    "_id": "57b51fcaac8da6856aa41850",
-                    "createDate": "2016-08-18T02:39:06.942Z",
-                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
+                        "_id": "57b51fcaac8da6856aa41850",
+                        "createDate": "2016-08-18T02:39:06.942Z",
+                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
                     },
                     {
-                    "_id": "57b51fe9ac8da6856aa41855",
-                    "createDate": "2016-08-18T02:39:37.524Z",
-                    "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
+                        "_id": "57b51fe9ac8da6856aa41855",
+                        "createDate": "2016-08-18T02:39:37.524Z",
+                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
                     }
                 ]
         }
+        
+## Gallery Photo By Id [/api/v1.0/gallery/{photoId}]
+
+## Get photo by Id [GET]
+
++ Response 200 (application/json)
+
+            {
+                "_id": "57b51fe9ac8da6856aa41855",
+                "createDate": "2016-08-18T02:39:37.524Z",
+                "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
+            }
