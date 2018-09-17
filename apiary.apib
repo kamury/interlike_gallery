@@ -24,12 +24,16 @@ API для работы с галереями Interlike App
                     + `pin`
                     + `odnoklassniki`
                     + `download`
+                    + `copy`
+                    + `email`
+                    + `html`
             + Возможные значения
                     + `picture`
                     + `object`
                     + `1`
-        + `showArrows` (number) - Показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
+        + `showNavigation` (number) - Показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
         + `showNewFirst` (number) - Первыми показывать самые свежие фотографии (LIFO). 
+        + `rootUrl` (string) - Урл сайта с галереей (нужно для корректной работы навигации по галерее при вставке галереи на сайт клиента в режиме embded). 
 
     + Body
         
@@ -44,14 +48,15 @@ API для работы с галереями Interlike App
                     "fb": "object",
                     "twitter": "image",
                     "download": 1},
-                "showArrows": 1,
+                "showNavigation": 1,
                 "showNewFirst": 1,
+                "rootUrl": "http://my.interlikeapp.com",
                 "photosCount": 20,
-                "eventStartDate": "2018-09-17T14-16-26.386823Z",
-                "eventEndDate": "2018-09-17T14-16-26.386823Z"
+                "eventStartDt": "2018-09-17T14-16-26.386823Z",
+                "eventEndDt": "2018-09-17T14-16-26.386823Z"
             }
         
-## Gallery Photos [/api/v1.0/gallery/{cmpNameUrl}/{eventNameUrl}{?startDate}{?endDate}{?limit}{?offset}]
+## Gallery Photos [/api/v1.0/gallery/{cmpNameUrl}/{eventNameUrl}{?startDt}{?endDt}{?lastDt}{?limit}{?offset}]
 
 ## Get photos [GET]
 
@@ -63,22 +68,22 @@ API для работы с галереями Interlike App
                 [
                     {
                         "_id": "57b3ed87ac8da6856aa40b1e",
-                        "createDate": "2016-08-17T04:52:23.095Z",
+                        "createDt": "2016-08-17T04:52:23.095Z",
                         "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
                     },
                     {
                         "_id": "57b51f7eac8da6856aa41844",
-                        "createDate": "2016-08-18T02:37:50.065Z",
+                        "createDt": "2016-08-18T02:37:50.065Z",
                         "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
                     },
                     {
                         "_id": "57b51fcaac8da6856aa41850",
-                        "createDate": "2016-08-18T02:39:06.942Z",
+                        "createDt": "2016-08-18T02:39:06.942Z",
                         "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
                     },
                     {
                         "_id": "57b51fe9ac8da6856aa41855",
-                        "createDate": "2016-08-18T02:39:37.524Z",
+                        "createDt": "2016-08-18T02:39:37.524Z",
                         "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
                     }
                 ]
@@ -92,6 +97,6 @@ API для работы с галереями Interlike App
 
             {
                 "_id": "57b51fe9ac8da6856aa41855",
-                "createDate": "2016-08-18T02:39:37.524Z",
+                "createDt": "2016-08-18T02:39:37.524Z",
                 "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
             }
