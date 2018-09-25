@@ -9,13 +9,17 @@ API для работы с галереями Interlike App
 
 ## Gallery config [/api/v1.0/gallery_config/{cmpNameUrl}/{eventNameUrl}]
 
++ Parameters
+    + cmpNameUrl - cmpNameUrl
+    + eventNameUrl - eventNameUrl
+
 ### Get config [GET]
 
 + Response 200 (application/json)
         
     + Attributes (object)
 
-        + `buttons` (object) - Список отображаемых кнопок для шаринга и скачивания картинки.
+        + `sharingButtons` (object) - Список отображаемых кнопок для шаринга в соцсетях.
             + Возможные ключи
                     + `fb`
                     + `vk`
@@ -23,35 +27,110 @@ API для работы с галереями Interlike App
                     + `linkedin`
                     + `pin`
                     + `odnoklassniki`
-                    + `download`
-                    + `copy`
-                    + `email`
-                    + `html`
             + Возможные значения
-                    + `picture`
+                    + `image`
                     + `object`
-                    + `1`
-        + `showNavigation` (number) - Показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
-        + `showNewFirst` (number) - Первыми показывать самые свежие фотографии (LIFO). 
-        + `rootUrl` (string) - Урл сайта с галереей (нужно для корректной работы навигации по галерее при вставке галереи на сайт клиента в режиме embded). 
+        + `buttons` (array) - Список функциональных кнопок. Возможные значения:
+            + download, copy, html
+        + `sharingWidget` (array) - Список виджетов для шаринга. Возможные значения:
+            + fb, instagram
 
     + Body
         
             {
                 "logo":"http://my.interlikeapp.com/images/uploaded/1470287629317logo_VCOneGoodThing_horizontal_colour_RGB.jpg",
                 "title":"VisitCanberra",
-                "fullTitle":"<p>#visitcanberra</p>",
-                "description":"Experiencing one good thing after another at the Canberra and Region Visitors Centre! #visitcanberra",
-                "bgcolor":"#FFFFFF",
-                "textcolor":"#FFFFFF",
-                "buttons": {
+                "description":"<p>#visitcanberra</p>",
+                "photoDescription":"Experiencing one good thing after another at the Canberra and Region Visitors Centre! #visitcanberra",
+                "header" {
+                    "bgcolor": "#000000",
+                    "bgimage": null,
+                    "textcolor": "#FFFFFF",
+                    "photosCountTextColor": "#FCFCFC",
+                    "gradient": {
+                        "direction": "180deg",
+                        "shape": "linear",
+                        "colors": [
+                            {
+                                "color": "#FFFFFF",
+                                "stop": "30%"
+                            },
+                            {
+                                "color": "#000000",
+                                "stop": "100%"
+                            }
+                        ]
+                    }
+                },
+                "grid": [
+                    {
+                        "dimensionMinPx": 0,
+                        "dimensionMaxPx": 400,
+                        "units": "percent",
+                        "gridWidth": "100",
+                        "topIndent": 0,
+                        "showHeader": 1,
+                        "distanceBetweenPhotos":0,
+                        "photoSize": 50,
+                        "verticalOffsetSup": 0,
+                        "gorizontalOffsetSup: 0,
+                        
+                    },
+                    {
+                        "dimensionMinPx": 401,
+                        "dimensionMaxPx": 1000,
+                        "units": "percent",
+                        "gridWidth": "80",
+                        "topIndent": 0,
+                        "showHeader": 1,
+                        "distanceBetweenPhotos":0,
+                        "photoSize": 25,
+                        "verticalOffsetSup": 0,
+                        "gorizontalOffsetSup: 0,
+                        
+                    }
+                    
+                ],
+                "fullSizePhoto": {
+                    "bgcolor": null,
+                    "bgimage": null,
+                    "textcolor": "#FFFFFF",
+                    "gradient": {
+                        "direction": "180deg",
+                        "shape": "linear",
+                        "colors": [
+                            {
+                                "color": "#FFFFFF",
+                                "stop": "30%"
+                            },
+                            {
+                                "color": "#000000",
+                                "stop": "100%"
+                            }
+                        ]
+                    }
+                },
+                "topLayers": [
+                ],
+                "bottomLayers": [
+                    {
+                        "index": 1,
+                        "type": "background",
+                        "bgcolor":"#FFFFFF",
+                        "bgimage": null,
+                        "textcolor":"#FFFFFF",
+                        "scrollSpeed": null,
+                    }
+                ],
+                "photoShape": null,
+                "sharingButtons": {
                     "fb": "object",
-                    "twitter": "image",
-                    "download": 1},
+                    "twitter": "image"},
+                "sharingWidgets": ['fb'],
+                "buttons": ["download", "html"]
                 "showNavigation": 1,
                 "showNewFirst": 1,
                 "rootUrl": "http://my.interlikeapp.com",
-                "photosCount": 20,
                 "eventStartDt": "2018-09-17T14-16-26.386823Z",
                 "eventEndDt": "2018-09-17T14-16-26.386823Z"
             }
@@ -59,6 +138,10 @@ API для работы с галереями Interlike App
 ## Gallery Photos [/api/v1.0/gallery/{cmpNameUrl}/{eventNameUrl}{?startDt}{?endDt}{?lastDt}{?limit}{?offset}]
 
 ## Get photos [GET]
+
++ Parameters
+    + cmpNameUrl - cmpNameUrl
+    + eventNameUrl - eventNameUrl
 
 + Response 200 (application/json)
 
@@ -93,6 +176,9 @@ API для работы с галереями Interlike App
 
 ## Get photo by Id [GET]
 
++ Parameters
+    + photoId - Id фотографии
+
 + Response 200 (application/json)
 
             {
@@ -100,3 +186,12 @@ API для работы с галереями Interlike App
                 "createDt": "2016-08-18T02:39:37.524Z",
                 "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
             }
+            
+## Fb analytics [/api/v1.0/add_fb_share/{photoId}]
+
+## Post new share [POST]
+
++ Parameters
+    + photoId - Id фотографии
+
++ Response 200 (application/json)
