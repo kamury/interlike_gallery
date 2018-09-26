@@ -24,11 +24,72 @@ API для работы с галереями Interlike App
         + description (string) -  Описание для галереи
         + photoDescription (string) -  Описание для фотографии
         + header(object) - Настройки для шапки.
+            +   bgcolor - цвет фона вида #СССССС
+            +   bgimage - ссылка на картинку фона
+            +   textcolor - цвет текста вида #СССССС
+            +   photosCountTextColor - цвет текста для надписи с количеством фотографий
+            +   gradient - настройки градиента
+                +   direction - направление угла наклона в градусах
+                +   shape (enum) - форма фотографии. Возможные значения:
+                        +   linear
+                        +   radial
+                +   colors - массив с набором цветов
+                    +   color - цвет вида #СССССС
+                    +   stop - точка остановки в процентах
+
         + grid (array) - Список настроек сетки для разных размеров экрана.
+                + grid (object)
+                    +   dimensionMinPx (number) - минимальный размер экран для данного набора настроек
+                    +   dimensionMaxPx (number) - максимальный размер экран для данного набора настроек
+                    +   units (enum) - единицы измерения для всех параметров. Возможные значения:
+                        + percent
+                        + px
+                    +   gridWidth (number) - ширина сетки
+                    +   topIndent (number) - отступ сверху (для шапки)
+                    +   showHeader (number) - 1 или 0. 1 - показываем шапку. 0 - отображаем галерею с начала фотографий, шапку пользователь может увидеть, если прокрутит вверх
+                    +   distanceBetweenPhotos (number) - расстояние между фотографиями
+                    +   photoSize (number) - размер фотографии
+                    +   verticalOffsetSup (number) - верхняя граница для рандомного вертикального сдвига
+                    +   horizontalOffsetSup (number) - верхняя граница для рандомного горизонтального сдвига
+
         + fullSizePhoto (object) - Настройки для полноэкранного отображения фотографии.
+            +   bgcolor - цвет фона вида #СССССС
+            +   bgimage - ссылка на картинку фона
+            +   textcolor - цвет текста вида #СССССС
+            +   photosCountTextColor - цвет текста для надписи с количеством фотографий
+            +   gradient - настройки градиента
+                +   direction - направление угла наклона в градусах
+                +   shape (enum) - форма фотографии. Возможные значения:
+                        +   linear
+                        +   radial
+                +   colors - массив с набором цветов
+                    +   color - цвет вида #СССССС
+                    +   stop - точка остановки в процентах
         + topLayers (array) - Список верхних слоев (выше фотографий).
-        + bottomLayers (array) - Список нижних слоев (под фотографиями).
-        + photoShape (string) - Форма фотографии. Значения: null, circle. 
+                + layers (object)
+                    + index (number) - порядковый номер
+                    + type (enum) - тип. Возможные значения: 
+                        +   background
+                        +   image
+                    + bgcolor (string) - цвет фона вида #СССССС
+                    + bgimage (string) - ссылка на картинку фона
+                    + textcolor (string) - цвет текста вида #СССССС
+                    + scrollSpeed (number) - скорость изменения при скроллинге
+
+        + bottomLayers (array) - Список нижних слоев (под фотографиями)
+                + layers (object)
+                    + index (number) - порядковый номер
+                    + type (enum) - тип. Возможные значения: 
+                        +   background
+                        +   image
+                    + bgcolor (string) - цвет фона вида #СССССС
+                    + bgimage (string) - ссылка на картинку фона
+                    + textcolor (string) - цвет текста вида #СССССС
+                    + scrollSpeed (number) - скорость изменения при скроллинге
+        
+        + photoShape (enum) - Форма фотографии. Возможные значения: 
+                +   square
+                +   circle 
         + `sharingButtons` (object) - Список отображаемых кнопок для шаринга в соцсетях.
             + Возможные ключи
                     + `fb`
