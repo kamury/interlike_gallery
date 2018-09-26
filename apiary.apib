@@ -19,6 +19,16 @@ API для работы с галереями Interlike App
         
     + Attributes (object)
 
+        + logo (string) -  Путь к картинке с логотипом
+        + title (string) - Заголовок
+        + description (string) -  Описание для галереи
+        + photoDescription (string) -  Описание для фотографии
+        + header(object) - Настройки для шапки.
+        + grid (array) - Список настроек сетки для разных размеров экрана.
+        + fullSizePhoto (object) - Настройки для полноэкранного отображения фотографии.
+        + topLayers (array) - Список верхних слоев (выше фотографий).
+        + bottomLayers (array) - Список нижних слоев (под фотографиями).
+        + photoShape (string) - Форма фотографии. Значения: null, circle. 
         + `sharingButtons` (object) - Список отображаемых кнопок для шаринга в соцсетях.
             + Возможные ключи
                     + `fb`
@@ -30,10 +40,15 @@ API для работы с галереями Interlike App
             + Возможные значения
                     + `image`
                     + `object`
-        + `buttons` (array) - Список функциональных кнопок. Возможные значения:
-            + download, copy, html
         + `sharingWidget` (array) - Список виджетов для шаринга. Возможные значения:
             + fb, instagram
+        + `buttons` (array) - Список функциональных кнопок. Возможные значения:
+            + download, copy, html
+        + showNavigation (number) - 1 или 0. Если 1, показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
+        + `showNewFirst` (number) - 1 или 0. Если 1, первыми показывать самые свежие фотографии (LIFO). Если 0 - FIFO.
+        + `rootUrl` (string) - Урл сайта с галереей (нужно для корректной работы навигации по галерее в embded-режиме, подробнее в ТЗ).
+        + eventStartDt (string) - Дата начала ивента в формате ISO 8601.
+        + eventEndDt (string) - Дата окончания ивента в формате ISO 8601.
 
     + Body
         
@@ -145,32 +160,42 @@ API для работы с галереями Interlike App
 
 + Response 200 (application/json)
 
-        {
-            "count": 4,
-            "items": 
-                [
-                    {
-                        "_id": "57b3ed87ac8da6856aa40b1e",
-                        "createDt": "2016-08-17T04:52:23.095Z",
-                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
-                    },
-                    {
-                        "_id": "57b51f7eac8da6856aa41844",
-                        "createDt": "2016-08-18T02:37:50.065Z",
-                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
-                    },
-                    {
-                        "_id": "57b51fcaac8da6856aa41850",
-                        "createDt": "2016-08-18T02:39:06.942Z",
-                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
-                    },
-                    {
-                        "_id": "57b51fe9ac8da6856aa41855",
-                        "createDt": "2016-08-18T02:39:37.524Z",
-                        "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
-                    }
-                ]
-        }
+    + Attributes (object)
+    
+        + `filteredCount` (number) - Количество фотографий в соответствии с заданным фильтром без учета лимита. Нужно для отображения общего количества фотографий в шапке.
+        + `limitedCount` (number) - Фактическое количество фотографий, которое вернул запрос, с учетом лимита.
+        + `items` (array) - Список фотографий
+            + id, createDt, url
+
+    + Body
+
+            {
+                "filteredCount": 4,
+                "limitedCount": 4,
+                "items": 
+                    [
+                        {
+                            "_id": "57b3ed87ac8da6856aa40b1e",
+                            "createDt": "2016-08-17T04:52:23.095Z",
+                            "url": "http://my.interlikeapp.com/published/visitcanberra/57b3ed87ac8da6856aa40b1e.png"
+                        },
+                        {
+                            "_id": "57b51f7eac8da6856aa41844",
+                            "createDt": "2016-08-18T02:37:50.065Z",
+                            "url": "http://my.interlikeapp.com/published/visitcanberra/57b51f7eac8da6856aa41844.png"
+                        },
+                        {
+                            "_id": "57b51fcaac8da6856aa41850",
+                            "createDt": "2016-08-18T02:39:06.942Z",
+                            "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fcaac8da6856aa41850.png"
+                        },
+                        {
+                            "_id": "57b51fe9ac8da6856aa41855",
+                            "createDt": "2016-08-18T02:39:37.524Z",
+                            "url": "http://my.interlikeapp.com/published/visitcanberra/57b51fe9ac8da6856aa41855.png"
+                        }
+                    ]
+            }
         
 ## Gallery Photo By Id [/api/v1.0/gallery/{photoId}]
 
