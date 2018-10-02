@@ -28,65 +28,13 @@ API для работы с галереями Interlike App
             +   bgimage - ссылка на картинку фона
             +   textcolor - цвет текста вида #СССССС
             +   photosCountTextColor - цвет текста для надписи с количеством фотографий
-            +   gradient - настройки градиента
-                +   direction - направление угла наклона в градусах
-                +   shape (enum) - форма фотографии. Возможные значения:
-                        +   linear
-                        +   radial
-                +   colors - массив с набором цветов
-                    +   color - цвет вида #СССССС
-                    +   stop - точка остановки в процентах
-
-        + grid (array) - Список настроек сетки для разных размеров экрана.
-                + grid (object)
-                    +   dimensionMinPx (number) - минимальный размер экран для данного набора настроек
-                    +   dimensionMaxPx (number) - максимальный размер экран для данного набора настроек
-                    +   units (enum) - единицы измерения для всех параметров. Возможные значения:
-                        + percent
-                        + px
-                    +   gridWidth (number) - ширина сетки
-                    +   topIndent (number) - отступ сверху (для шапки)
-                    +   showHeader (number) - 1 или 0. 1 - показываем шапку. 0 - отображаем галерею с начала фотографий, шапку пользователь может увидеть, если прокрутит вверх
-                    +   distanceBetweenPhotos (number) - расстояние между фотографиями
-                    +   photoSize (number) - размер фотографии
-                    +   verticalOffsetSup (number) - верхняя граница для рандомного вертикального сдвига
-                    +   horizontalOffsetSup (number) - верхняя граница для рандомного горизонтального сдвига
-
+        
         + fullSizePhoto (object) - Настройки для полноэкранного отображения фотографии.
             +   bgcolor - цвет фона вида #СССССС
             +   bgimage - ссылка на картинку фона
             +   textcolor - цвет текста вида #СССССС
             +   photosCountTextColor - цвет текста для надписи с количеством фотографий
-            +   gradient - настройки градиента
-                +   direction - направление угла наклона в градусах
-                +   shape (enum) - форма фотографии. Возможные значения:
-                        +   linear
-                        +   radial
-                +   colors - массив с набором цветов
-                    +   color - цвет вида #СССССС
-                    +   stop - точка остановки в процентах
-        + topLayers (array) - Список верхних слоев (выше фотографий).
-                + layers (object)
-                    + index (number) - порядковый номер
-                    + type (enum) - тип. Возможные значения: 
-                        +   background
-                        +   image
-                    + bgcolor (string) - цвет фона вида #СССССС
-                    + bgimage (string) - ссылка на картинку фона
-                    + textcolor (string) - цвет текста вида #СССССС
-                    + scrollSpeed (number) - скорость изменения при скроллинге
-
-        + bottomLayers (array) - Список нижних слоев (под фотографиями)
-                + layers (object)
-                    + index (number) - порядковый номер
-                    + type (enum) - тип. Возможные значения: 
-                        +   background
-                        +   image
-                    + bgcolor (string) - цвет фона вида #СССССС
-                    + bgimage (string) - ссылка на картинку фона
-                    + textcolor (string) - цвет текста вида #СССССС
-                    + scrollSpeed (number) - скорость изменения при скроллинге
-        
+            
         + `sharingButtons` (object) - Список отображаемых кнопок для шаринга в соцсетях.
             + Возможные ключи
                     + `fb`
@@ -102,9 +50,6 @@ API для работы с галереями Interlike App
             + fb, instagram
         + `buttons` (array) - Список функциональных кнопок. Возможные значения:
             + download, copy, html
-        + photoShape (enum) - Форма фотографии. Возможные значения: 
-                +   square
-                +   circle
         + showNavigation (number) - 1 или 0. Если 1, показывать стрелки вперед-назад и кнопку "закрыть"(вернуться в галерею) при отображении фотографии в полноэранном режиме.
         + `showNewFirst` (number) - 1 или 0. Если 1, первыми показывать самые свежие фотографии (LIFO). Если 0 - FIFO.
         + `rootUrl` (string) - Урл сайта с галереей (нужно для корректной работы навигации по галерее в embded-режиме, подробнее в ТЗ).
@@ -123,82 +68,13 @@ API для работы с галереями Interlike App
                     "bgimage": null,
                     "textcolor": "#FFFFFF",
                     "photosCountTextColor": "#FCFCFC",
-                    "gradient": {
-                        "direction": "180deg",
-                        "shape": "linear",
-                        "colors": [
-                            {
-                                "color": "#FFFFFF",
-                                "stop": "30%"
-                            },
-                            {
-                                "color": "#000000",
-                                "stop": "100%"
-                            }
-                        ]
-                    }
                 },
-                "grid": [
-                    {
-                        "dimensionMinPx": 0,
-                        "dimensionMaxPx": 400,
-                        "units": "percent",
-                        "gridWidth": "100",
-                        "topIndent": 0,
-                        "showHeader": 1,
-                        "distanceBetweenPhotos":0,
-                        "photoSize": 50,
-                        "verticalOffsetSup": 0,
-                        "gorizontalOffsetSup: 0,
-                        
-                    },
-                    {
-                        "dimensionMinPx": 401,
-                        "dimensionMaxPx": 1000,
-                        "units": "percent",
-                        "gridWidth": "80",
-                        "topIndent": 0,
-                        "showHeader": 1,
-                        "distanceBetweenPhotos":0,
-                        "photoSize": 25,
-                        "verticalOffsetSup": 0,
-                        "gorizontalOffsetSup: 0,
-                        
-                    }
-                    
-                ],
                 "fullSizePhoto": {
                     "bgcolor": null,
                     "bgimage": null,
                     "textcolor": "#FFFFFF",
-                    "gradient": {
-                        "direction": "180deg",
-                        "shape": "linear",
-                        "colors": [
-                            {
-                                "color": "#FFFFFF",
-                                "stop": "30%"
-                            },
-                            {
-                                "color": "#000000",
-                                "stop": "100%"
-                            }
-                        ]
-                    }
                 },
-                "topLayers": [
-                ],
-                "bottomLayers": [
-                    {
-                        "index": 1,
-                        "type": "background",
-                        "bgcolor":"#FFFFFF",
-                        "bgimage": null,
-                        "textcolor":"#FFFFFF",
-                        "scrollSpeed": null,
-                    }
-                ],
-                "photoShape": null,
+                "custom_css": "http://my.interlikeapp.com/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css",
                 "sharingButtons": {
                     "fb": "object",
                     "twitter": "image"},
