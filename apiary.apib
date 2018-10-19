@@ -35,7 +35,7 @@ API для работы с галереями Interlike App
             +   textcolor - цвет текста вида #СССССС
             +   photosCountTextColor - цвет текста для надписи с количеством фотографий
             
-        + custom_css(string) - Урл файла с кастомным css. 
+        + customCss(string) - Урл файла с кастомным css. 
         + `sharingButtons` (object) - Список отображаемых кнопок для шаринга в соцсетях.
             + Возможные ключи
                     + `fb`
@@ -75,7 +75,7 @@ API для работы с галереями Interlike App
                     "bgimage": null,
                     "textcolor": "#FFFFFF",
                 },
-                "custom_css": "http://my.interlikeapp.com/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css",
+                "customCss": "http://my.interlikeapp.com/bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css",
                 "sharingButtons": {
                     "fb": "object",
                     "twitter": "image"},
@@ -95,6 +95,11 @@ API для работы с галереями Interlike App
 + Parameters
     + cmpNameUrl - cmpNameUrl
     + eventNameUrl - eventNameUrl
+    * startDt - все фото с ивента старше этой даты, напр. 2018-10-05T16:04:42
+    * endDt  - все фото с ивента младше этой даты, напр. 2018-10-05T16:04:42
+    * limit - лимит
+    * offset - оффсет
+    
 
 + Response 200 (application/json)
 
